@@ -6,10 +6,13 @@ namespace Draw.Scripts.Gameplay.Brush
     public class Movement
     {
         private Transform _brushTransform;
+        
         private Vector3 _previousPosition;
         private Vector3 _movementDirection;
         private Vector3 _targetRotation;
 
+        private bool _isAttached;
+        
         private int _horizontalDir;
         private int _verticalDir;
         
@@ -21,15 +24,14 @@ namespace Draw.Scripts.Gameplay.Brush
             _brushTransform = brushTransform;
             _previousPosition = _brushTransform.position;
         }
-
+        
         public void MoveHandler(Vector3 targetPos)
         {
             _brushTransform.position = targetPos;
-    
+            
             RotationHandler(targetPos);
-            Rotate();
+            Rotate();   
         }
-
         private void RotationHandler(Vector3 targetPos)
         {
             _movementDirection = (targetPos - _previousPosition).normalized; 
