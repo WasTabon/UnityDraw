@@ -6,41 +6,24 @@ namespace Draw.Scripts.System.Input
 {
     public class InputManager : IUpdatable
     {
-        public event Action<Vector3> OnMouseMoved; // Изменено на Vector3 для сохранения координаты Z
+        private const float FixedZ = -1.5f;
+        
+        public event Action<Vector3> OnMouseMoved;
+        
+        private Vector3 _targetPosition;
+        private Vector3 _currentMousePosition;
 
-        private Vector3 _lastMousePos;
-        private readonly Camera _camera;
-        private const float FixedZ = -1.5f; // Фиксированная координата Z
-
-        public InputManager(Camera camera)
-        {
-            _lastMousePos = Vector3.zero;
-            _camera = camera;
-        }
+        private float _distance;
 
         public void Update()
         {
-            Vector3 currentMousePosition = UnityEngine.Input.mousePosition;
-            if (currentMousePosition != _lastMousePos)
-            {
-                _lastMousePos = currentMousePosition;
+            _currentMousePosition = UnityEngine.Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(_currentMousePosition);
+                
+            _distance = (FixedZ - ray.origin.z) / ray.direction.z;
+            _targetPosition = ray.origin + ray.direction * _distance;
 
-                Ray ray = _camera.ScreenPointToRay(currentMousePosition);
-
-                Vector3 targetPosition;
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    targetPosition = hit.point;
-                }
-                else
-                {
-                    // Вычисление точки на плоскости Z = FixedZ
-                    float distance = (FixedZ - ray.origin.z) / ray.direction.z;
-                    targetPosition = ray.origin + ray.direction * distance;
-                }
-
-                OnMouseMoved?.Invoke(targetPosition);
-            }
+            OnMouseMoved?.Invoke(_targetPosition);
         }
     }
 }

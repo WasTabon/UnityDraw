@@ -8,7 +8,6 @@ namespace Draw.Scripts.Bootstrap
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private Camera _camera;
         [SerializeField] private Brush _brush;
 
         private InputManager _inputManager;
@@ -22,7 +21,7 @@ namespace Draw.Scripts.Bootstrap
         private void Initialize()
         {
            CreateUpdater();
-           CreateInputManager(_camera);
+           CreateInputManager();
            CreateBrush(_inputManager);
            
            _updater.RegisterUpdatable(_inputManager);
@@ -37,9 +36,9 @@ namespace Draw.Scripts.Bootstrap
             _updater = updater;
         }
 
-        private void CreateInputManager(Camera camera)
+        private void CreateInputManager()
         {
-            _inputManager = new InputManager(camera);
+            _inputManager = new InputManager();
         }
 
         private void CreateBrush(InputManager inputManager)
