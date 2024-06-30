@@ -43,7 +43,6 @@ namespace Draw.Scripts.System.Utils
 
         public async Task SaveTextureAsync()
         {
-            // Ensure the directory exists
             if (!Directory.Exists(SaveDirectory))
             {
                 Directory.CreateDirectory(SaveDirectory);
@@ -64,10 +63,6 @@ namespace Draw.Scripts.System.Utils
 
                 _texture2D.LoadImage(textureBytes);
                 _texture2D.Apply();
-            }
-            else
-            {
-                Debug.LogError($"File not found: {SaveFilePath}");
             }
         }
         
