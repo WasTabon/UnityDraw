@@ -5,6 +5,9 @@ namespace Draw.Scripts.Gameplay.Brush
 {
     public class Movement
     {
+        private const int HorizontalRotate = -70;
+        private const int VerticalRotate = 70;
+        
         private Transform _brushTransform;
         
         private Vector3 _previousPosition;
@@ -58,7 +61,7 @@ namespace Draw.Scripts.Gameplay.Brush
 
         private void Rotate()
         {
-            _targetRotation = new Vector3(-70 * _verticalDir, 70 * _horizontalDir, 0);
+            _targetRotation = new Vector3(HorizontalRotate * _verticalDir, VerticalRotate * _horizontalDir, 0);
             _brushTransform.DOLocalRotate(_targetRotation, 0.5f);
         }
     }

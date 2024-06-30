@@ -16,7 +16,7 @@ namespace Draw.Scripts.Gameplay.Brush
         public void Initialize(InputManager inputManager, Renderer drawableRrenderer)
         {
             _movement = new Movement(gameObject.transform);
-            _painter = new Painter(transform, drawableRrenderer, _drawableLayerMask);
+            _painter = new Painter(drawableRrenderer, _drawableLayerMask);
             
             _inputManager = inputManager;
             

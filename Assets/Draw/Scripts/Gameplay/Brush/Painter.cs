@@ -10,13 +10,9 @@ namespace Draw.Scripts.Gameplay.Brush
         private LayerMask _drawableLayerMask;
         
         private Color _currentColor;
-        
-        private Transform _brushTransform;
 
-        public Painter(Transform brushTransform, Renderer drawableRenderer, LayerMask drawableLayerMask)
+        public Painter(Renderer drawableRenderer, LayerMask drawableLayerMask)
         {
-            _brushTransform = brushTransform;
-
             _drawableRenderer = drawableRenderer;
             _drawableLayerMask = drawableLayerMask;
             
@@ -37,8 +33,6 @@ namespace Draw.Scripts.Gameplay.Brush
             
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _drawableLayerMask))
             {
-                Debug.Log("Raycasted");
-                
                 Vector2 uv = hit.textureCoord;
                 
                 int x = (int)(uv.x * _texture.width);
@@ -56,10 +50,6 @@ namespace Draw.Scripts.Gameplay.Brush
                 }
 
                 _texture.Apply();
-            }
-            else
-            {
-                Debug.Log("Not raycasted");
             }
         }
     }

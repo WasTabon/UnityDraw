@@ -4,13 +4,13 @@ namespace Draw.Scripts.System.Utils
 {
     public class TextureManager
     {
-        public Texture2D texture2D { get; private set; }
+        private Texture2D _texture2D;
 
-        public TextureManager(Renderer renderer)
+        public TextureManager(Renderer drawableRenderer)
         {
-            texture2D = new Texture2D(1024, 1024);
+            _texture2D = new Texture2D(1024, 1024);
             
-            renderer.material.mainTexture = texture2D;
+            drawableRenderer.material.mainTexture = _texture2D;
         }
     }
 }
