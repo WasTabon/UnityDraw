@@ -12,6 +12,8 @@ namespace Draw.Scripts.Gameplay.Brush
         
         private Color _currentColor;
 
+        private int _brushSize = 15;
+
         public Painter(Renderer drawableRenderer, LayerMask drawableLayerMask)
         {
             _drawableRenderer = drawableRenderer;
@@ -26,6 +28,11 @@ namespace Draw.Scripts.Gameplay.Brush
         {
             _currentColor = color;
         }
+
+        public void ChangeBrushSize(int size)
+        {
+            _brushSize = size;
+        }
         
         public void Paint(Vector3 targetPos)
         {
@@ -39,14 +46,11 @@ namespace Draw.Scripts.Gameplay.Brush
                 int x = (int)(uv.x * _texture.width);
                 int y = (int)(uv.y * _texture.height);
 
-                int brushX = (int)(25);
-                int brushY = (int)(25);
-
-                for (int i = 0; i < brushX; i++)
+                for (int i = 0; i < _brushSize; i++)
                 {
-                    for (int j = 0; j < brushY; j++)
+                    for (int j = 0; j < _brushSize; j++)
                     {
-                        _texture.SetPixel(x + i - brushX / 2, y + j - brushY / 2, _currentColor);
+                        _texture.SetPixel(x + i - _brushSize / 2, y + j - _brushSize / 2, _currentColor);
                     }
                 }
 

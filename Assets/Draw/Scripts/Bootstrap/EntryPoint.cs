@@ -13,10 +13,11 @@ namespace Draw.Scripts.Bootstrap
         [SerializeField] private Brush _brush;
         [SerializeField] private Renderer _drawableRenderer;
         [SerializeField] private UIConfig _uiConfig;
-
+        
         private Button _redButton;
         private Button _greenButton;
         private Button _blueButton;
+        private Slider _brushSizeSlider;
         
         private InputManager _inputManager;
         private UIManager _uiManager;
@@ -35,7 +36,7 @@ namespace Draw.Scripts.Bootstrap
            CreateTextureManager(_drawableRenderer);
            
            GetButtons();
-           CreateUIManager(_redButton, _greenButton, _blueButton);
+           CreateUIManager(_redButton, _greenButton, _blueButton, _brushSizeSlider);
            
            CreateBrush(_inputManager);
            
@@ -66,9 +67,9 @@ namespace Draw.Scripts.Bootstrap
             _brush.Initialize(inputManager, _uiManager, _drawableRenderer);
         }
 
-        private void CreateUIManager(Button redButton, Button greenButton, Button blueButton)
+        private void CreateUIManager(Button redButton, Button greenButton, Button blueButton, Slider brushSizeSlider)
         {
-            _uiManager = new UIManager(redButton, greenButton, blueButton);
+            _uiManager = new UIManager(redButton, greenButton, blueButton, brushSizeSlider);
         }
 
         private void GetButtons()
@@ -76,6 +77,7 @@ namespace Draw.Scripts.Bootstrap
             _redButton = GameObject.FindWithTag(_uiConfig.RedButtonTag).GetComponent<Button>();
             _greenButton = GameObject.FindWithTag(_uiConfig.GreenButtonTag).GetComponent<Button>();
             _blueButton = GameObject.FindWithTag(_uiConfig.BlueButtonTag).GetComponent<Button>();
+            _brushSizeSlider = GameObject.FindWithTag(_uiConfig.SliderBrushSizeTag).GetComponent<Slider>();
         }
     }
 }
