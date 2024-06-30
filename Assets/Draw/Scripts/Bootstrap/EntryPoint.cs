@@ -79,6 +79,7 @@ namespace Draw.Scripts.Bootstrap
             _redButton = GameObject.FindWithTag(_uiConfig.RedButtonTag).GetComponent<Button>();
             _greenButton = GameObject.FindWithTag(_uiConfig.GreenButtonTag).GetComponent<Button>();
             _blueButton = GameObject.FindWithTag(_uiConfig.BlueButtonTag).GetComponent<Button>();
+            _clearButton = GameObject.FindWithTag(_uiConfig.ClearButtonTag).GetComponent<Button>();
             _brushSizeSlider = GameObject.FindWithTag(_uiConfig.SliderBrushSizeTag).GetComponent<Slider>();
         }
     }
