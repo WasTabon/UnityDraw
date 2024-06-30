@@ -20,9 +20,6 @@ namespace Draw.Scripts.Gameplay.Brush
             _currentColor = Color.red;
 
             _texture = _drawableRenderer.material.mainTexture as Texture2D;
-            
-            Debug.Log(_texture.width);
-            Debug.Log(_texture.height);
         }
 
         public void ChangeColor(Color color)

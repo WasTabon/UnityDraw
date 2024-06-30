@@ -33,10 +33,11 @@ namespace Draw.Scripts.Bootstrap
            CreateUpdater();
            CreateInputManager();
            CreateTextureManager(_drawableRenderer);
-           CreateBrush(_inputManager);
            
            GetButtons();
            CreateUIManager(_redButton, _greenButton, _blueButton);
+           
+           CreateBrush(_inputManager);
            
            _updater.RegisterUpdatable(_inputManager);
         }
@@ -62,7 +63,7 @@ namespace Draw.Scripts.Bootstrap
 
         private void CreateBrush(InputManager inputManager)
         {
-            _brush.Initialize(inputManager,_uiManager, _drawableRenderer);
+            _brush.Initialize(inputManager, _uiManager, _drawableRenderer);
         }
 
         private void CreateUIManager(Button redButton, Button greenButton, Button blueButton)

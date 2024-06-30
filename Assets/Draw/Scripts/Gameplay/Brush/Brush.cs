@@ -9,6 +9,7 @@ namespace Draw.Scripts.Gameplay.Brush
         [SerializeField] private LayerMask _drawableLayerMask;
         
         private InputManager _inputManager;
+        private UIManager _uiManager;
         private Movement _movement;
         private Painter _painter;
 
@@ -20,10 +21,11 @@ namespace Draw.Scripts.Gameplay.Brush
             _painter = new Painter(drawableRrenderer, _drawableLayerMask);
             
             _inputManager = inputManager;
+            _uiManager = uiManager;
             
             _inputManager.OnMouseMoved += _movement.MoveHandler;
             _inputManager.OnLeftMousePressed += _painter.Paint;
-            uiManager.OnColorChanged += _painter.ChangeColor;
+            _uiManager.OnColorChanged += _painter.ChangeColor;
             
             _isInitialized = true;
         }
