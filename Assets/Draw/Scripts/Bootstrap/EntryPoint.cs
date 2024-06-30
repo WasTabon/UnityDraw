@@ -17,6 +17,7 @@ namespace Draw.Scripts.Bootstrap
         private Button _redButton;
         private Button _greenButton;
         private Button _blueButton;
+        private Button _clearButton;
         private Slider _brushSizeSlider;
         
         private InputManager _inputManager;
@@ -33,10 +34,10 @@ namespace Draw.Scripts.Bootstrap
         {
            CreateUpdater();
            CreateInputManager();
-           CreateTextureManager(_drawableRenderer);
+           CreateTextureManager(_drawableRenderer, _uiManager);
            
            GetButtons();
-           CreateUIManager(_redButton, _greenButton, _blueButton, _brushSizeSlider);
+           CreateUIManager(_redButton, _greenButton, _blueButton, _brushSizeSlider, _clearButton);
            
            CreateBrush(_inputManager);
            
@@ -57,9 +58,9 @@ namespace Draw.Scripts.Bootstrap
             _inputManager = new InputManager();
         }
 
-        private void CreateTextureManager(Renderer drawableRenderer)
+        private void CreateTextureManager(Renderer drawableRenderer, UIManager uiManager)
         {
-            _textureManager = new TextureManager(drawableRenderer);
+            _textureManager = new TextureManager(drawableRenderer, uiManager);
         }
 
         private void CreateBrush(InputManager inputManager)
@@ -67,9 +68,9 @@ namespace Draw.Scripts.Bootstrap
             _brush.Initialize(inputManager, _uiManager, _drawableRenderer);
         }
 
-        private void CreateUIManager(Button redButton, Button greenButton, Button blueButton, Slider brushSizeSlider)
+        private void CreateUIManager(Button redButton, Button greenButton, Button blueButton, Slider brushSizeSlider, Button clearButton)
         {
-            _uiManager = new UIManager(redButton, greenButton, blueButton, brushSizeSlider);
+            _uiManager = new UIManager(redButton, greenButton, blueButton, brushSizeSlider, clearButton);
         }
 
         private void GetButtons()
