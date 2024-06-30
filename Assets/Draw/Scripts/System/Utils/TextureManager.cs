@@ -12,17 +12,19 @@ namespace Draw.Scripts.System.Utils
         
         private const int TextureWidth = 1024;
         private const int TextureHeight = 1024;
-        
+
+        private UIManager _uiManager;
         private Texture2D _texture2D;
         private Renderer _drawableRenderer;
 
         public TextureManager(Renderer drawableRenderer, UIManager uiManager)
         {
             _drawableRenderer = drawableRenderer;
+            _uiManager = uiManager;
             
-            uiManager.OnClear += ClearTexture;
-            uiManager.OnSave += async () => await SaveTextureAsync();
-            uiManager.OnLoad += async () => await LoadTextureAsync();
+            _uiManager.OnClear += ClearTexture;
+            _uiManager.OnSave += async () => await SaveTextureAsync();
+            _uiManager.OnLoad += async () => await LoadTextureAsync();
             
             _texture2D = new Texture2D(TextureWidth, TextureHeight);
             _drawableRenderer.material.mainTexture = _texture2D;
@@ -41,7 +43,7 @@ namespace Draw.Scripts.System.Utils
             _texture2D.Apply();        
         }
 
-        public async Task SaveTextureAsync()
+        private async Task SaveTextureAsync()
         {
             if (!Directory.Exists(SaveDirectory))
             {
@@ -52,19 +54,18 @@ namespace Draw.Scripts.System.Utils
 
             byte[] textureBytes = _texture2D.EncodeToPNG();
 
-            await Task.Run(() => File.WriteAllBytes(SaveFilePath, textureBytes));
+            await File.WriteAllBytesAsync(SaveFilePath, textureBytes);
         }
 
-        public async Task LoadTextureAsync()
+        private async Task LoadTextureAsync()
         {
             if (File.Exists(SaveFilePath))
             {
-                byte[] textureBytes = await Task.Run(() => File.ReadAllBytes(SaveFilePath));
+                byte[] textureBytes = await File.ReadAllBytesAsync(SaveFilePath);
 
                 _texture2D.LoadImage(textureBytes);
                 _texture2D.Apply();
             }
         }
-        
     }
 }

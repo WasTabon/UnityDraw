@@ -12,8 +12,6 @@ namespace Draw.Scripts.Gameplay.Brush
         private UIManager _uiManager;
         private Movement _movement;
         private Painter _painter;
-
-        private bool _isInitialized;
         
         public void Initialize(InputManager inputManager, UIManager uiManager, Renderer drawableRrenderer)
         {
@@ -27,16 +25,14 @@ namespace Draw.Scripts.Gameplay.Brush
             _inputManager.OnLeftMousePressed += _painter.Paint;
             _uiManager.OnColorChanged += _painter.ChangeColor;
             _uiManager.OnBrushSizeChanged += _painter.ChangeBrushSize;
-            
-            _isInitialized = true;
         }
 
         private void OnDisable()
         {
-            //_inputManager.OnMouseMoved -= _movement.MoveHandler;
-            //_inputManager.OnLeftMousePressed -= _painter.Paint;
-            //_uiManager.OnColorChanged -= _painter.ChangeColor;
-            //_uiManager.OnBrushSizeChanged -= _painter.ChangeBrushSize;
+            _inputManager.OnMouseMoved -= _movement.MoveHandler;
+            _inputManager.OnLeftMousePressed -= _painter.Paint;
+            _uiManager.OnColorChanged -= _painter.ChangeColor;
+            _uiManager.OnBrushSizeChanged -= _painter.ChangeBrushSize;
         }
     }
 }
