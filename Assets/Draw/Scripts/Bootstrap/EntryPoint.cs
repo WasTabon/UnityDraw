@@ -34,10 +34,11 @@ namespace Draw.Scripts.Bootstrap
         {
            CreateUpdater();
            CreateInputManager();
-           CreateTextureManager(_drawableRenderer, _uiManager);
            
            GetButtons();
            CreateUIManager(_redButton, _greenButton, _blueButton, _brushSizeSlider, _clearButton);
+           
+           CreateTextureManager(_drawableRenderer, _uiManager);
            
            CreateBrush(_inputManager);
            

@@ -16,3 +16,4 @@ MonoBehaviour:
   _greenButtonTag: Green
   _blueButtonTag: Blue
   _sliderBrushSizeTag: BrushSize
+  _clearButtonTag: Clear
