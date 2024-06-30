@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 namespace Draw.Scripts.Gameplay.Brush
@@ -24,11 +25,14 @@ namespace Draw.Scripts.Gameplay.Brush
             Debug.Log(_texture.height);
         }
 
+        public void ChangeColor(Color color)
+        {
+            _currentColor = color;
+        }
+        
         public void Paint(Vector3 targetPos)
         {
             Ray ray = new Ray(targetPos, Vector3.forward);
-            Debug.DrawRay(targetPos, Vector3.forward, Color.red);
-
             RaycastHit hit;
             
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _drawableLayerMask))

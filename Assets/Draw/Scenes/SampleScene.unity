@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 405597993}
   m_Layer: 5
   m_Name: GreenButton
-  m_TagString: Untagged
+  m_TagString: Green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.22125001, y: 0.17777778}
   m_AnchorMax: {x: 0.32500002, y: 0.36444443}
-  m_AnchoredPosition: {x: -0.6000061, y: -0.5}
+  m_AnchoredPosition: {x: -0.5999756, y: -0.5}
   m_SizeDelta: {x: -1.8671875, y: -2.9063034}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405597993
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brush: {fileID: 1025538665}
   _drawableRenderer: {fileID: 1511904613}
+  _uiConfig: {fileID: 0}
 --- !u!4 &603622096
 Transform:
   m_ObjectHideFlags: 0
@@ -729,7 +730,7 @@ GameObject:
   - component: {fileID: 1083271417}
   m_Layer: 5
   m_Name: RedButton
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -751,7 +752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0725, y: 0.17777778}
   m_AnchorMax: {x: 0.17500001, y: 0.36444443}
-  m_AnchoredPosition: {x: -0.1000061, y: -0.5}
+  m_AnchoredPosition: {x: -0.099975586, y: -0.5}
   m_SizeDelta: {x: -0.8671875, y: -2.9063034}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083271417
@@ -1085,7 +1086,7 @@ GameObject:
   - component: {fileID: 1717689702}
   m_Layer: 5
   m_Name: BlueButton
-  m_TagString: Untagged
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

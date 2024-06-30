@@ -1,4 +1,5 @@
 using Draw.Scripts.System.Input;
+using Draw.Scripts.UI;
 using UnityEngine;
 
 namespace Draw.Scripts.Gameplay.Brush
@@ -13,7 +14,7 @@ namespace Draw.Scripts.Gameplay.Brush
 
         private bool _isInitialized;
         
-        public void Initialize(InputManager inputManager, Renderer drawableRrenderer)
+        public void Initialize(InputManager inputManager, UIManager uiManager, Renderer drawableRrenderer)
         {
             _movement = new Movement(gameObject.transform);
             _painter = new Painter(drawableRrenderer, _drawableLayerMask);
@@ -22,13 +23,9 @@ namespace Draw.Scripts.Gameplay.Brush
             
             _inputManager.OnMouseMoved += _movement.MoveHandler;
             _inputManager.OnLeftMousePressed += _painter.Paint;
+            uiManager.OnColorChanged += _painter.ChangeColor;
             
             _isInitialized = true;
-        }
-
-        private void Update()
-        {
-            
         }
 
         private void OnDisable()
