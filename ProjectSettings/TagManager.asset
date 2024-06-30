@@ -9,6 +9,8 @@ TagManager:
   - Blue
   - BrushSize
   - Clear
+  - Save
+  - Load
   layers:
   - Default
   - TransparentFX

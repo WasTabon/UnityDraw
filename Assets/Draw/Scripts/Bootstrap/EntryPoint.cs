@@ -18,6 +18,8 @@ namespace Draw.Scripts.Bootstrap
         private Button _greenButton;
         private Button _blueButton;
         private Button _clearButton;
+        private Button _saveButton;
+        private Button _loadButton;
         private Slider _brushSizeSlider;
         
         private InputManager _inputManager;
@@ -36,7 +38,7 @@ namespace Draw.Scripts.Bootstrap
            CreateInputManager();
            
            GetButtons();
-           CreateUIManager(_redButton, _greenButton, _blueButton, _brushSizeSlider, _clearButton);
+           CreateUIManager(_redButton, _greenButton, _blueButton, _brushSizeSlider, _clearButton, _saveButton, _loadButton);
            
            CreateTextureManager(_drawableRenderer, _uiManager);
            
@@ -69,9 +71,9 @@ namespace Draw.Scripts.Bootstrap
             _brush.Initialize(inputManager, _uiManager, _drawableRenderer);
         }
 
-        private void CreateUIManager(Button redButton, Button greenButton, Button blueButton, Slider brushSizeSlider, Button clearButton)
+        private void CreateUIManager(Button redButton, Button greenButton, Button blueButton, Slider brushSizeSlider, Button clearButton, Button saveButton, Button loadbButton)
         {
-            _uiManager = new UIManager(redButton, greenButton, blueButton, brushSizeSlider, clearButton);
+            _uiManager = new UIManager(redButton, greenButton, blueButton, brushSizeSlider, clearButton, saveButton, loadbButton);
         }
 
         private void GetButtons()
@@ -80,6 +82,8 @@ namespace Draw.Scripts.Bootstrap
             _greenButton = GameObject.FindWithTag(_uiConfig.GreenButtonTag).GetComponent<Button>();
             _blueButton = GameObject.FindWithTag(_uiConfig.BlueButtonTag).GetComponent<Button>();
             _clearButton = GameObject.FindWithTag(_uiConfig.ClearButtonTag).GetComponent<Button>();
+            _saveButton = GameObject.FindWithTag(_uiConfig.SaveButtonTag).GetComponent<Button>();
+            _loadButton = GameObject.FindWithTag(_uiConfig.LoadButtonTag).GetComponent<Button>();
             _brushSizeSlider = GameObject.FindWithTag(_uiConfig.SliderBrushSizeTag).GetComponent<Slider>();
         }
     }
