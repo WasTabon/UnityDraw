@@ -9,8 +9,7 @@ using UnityEngine.UI;
 namespace Draw.Scripts.Bootstrap
 {
     public class EntryPoint : MonoBehaviour
-    {
-        [SerializeField] private Brush _brush;
+    { 
         [SerializeField] private GameObject brush;
         [SerializeField] private Renderer _drawableRenderer;
         [SerializeField] private UIConfig _uiConfig;
@@ -24,6 +23,7 @@ namespace Draw.Scripts.Bootstrap
         private Button _loadButton;
         private Slider _brushSizeSlider;
         
+        private Brush _brush;
         private InputManager _inputManager;
         private UIManager _uiManager;
         private TextureManager _textureManager;
