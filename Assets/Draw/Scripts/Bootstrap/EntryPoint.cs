@@ -71,7 +71,6 @@ namespace Draw.Scripts.Bootstrap
         private void CreateBrush(InputManager inputManager)
         {
             _brush = new Brush(inputManager, _uiManager, _drawableRenderer, _drawableLayerMask, brush.transform);
-            
         }
 
         private void CreateUIManager(Button redButton, Button greenButton, Button blueButton, Slider brushSizeSlider, Button clearButton, Button saveButton, Button loadbButton)
