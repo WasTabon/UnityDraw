@@ -4,19 +4,17 @@ using UnityEngine;
 
 namespace Draw.Scripts.Gameplay.Brush
 {
-    public class Brush : MonoBehaviour
+    public class Brush
     {
-        [SerializeField] private LayerMask _drawableLayerMask;
-        
         private InputManager _inputManager;
         private UIManager _uiManager;
         private Movement _movement;
         private Painter _painter;
         
-        public void Initialize(InputManager inputManager, UIManager uiManager, Renderer drawableRrenderer)
+        public Brush(InputManager inputManager, UIManager uiManager, Renderer drawableRrenderer, LayerMask drawableLayerMask, Transform transform)
         {
-            _movement = new Movement(gameObject.transform);
-            _painter = new Painter(drawableRrenderer, _drawableLayerMask);
+            _movement = new Movement(transform);
+            _painter = new Painter(drawableRrenderer, drawableLayerMask);
             
             _inputManager = inputManager;
             _uiManager = uiManager;
@@ -26,11 +24,12 @@ namespace Draw.Scripts.Gameplay.Brush
             _uiManager.OnColorChanged += _painter.ChangeColor;
             _uiManager.OnBrushSizeChanged += _painter.ChangeBrushSize;
         }
-
-        private void OnDisable()
+        
+        public void Cleanup()
         {
             _inputManager.OnMouseMoved -= _movement.MoveHandler;
             _inputManager.OnLeftMousePressed -= _painter.Paint;
+                
             _uiManager.OnColorChanged -= _painter.ChangeColor;
             _uiManager.OnBrushSizeChanged -= _painter.ChangeBrushSize;
         }

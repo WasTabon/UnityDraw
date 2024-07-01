@@ -11,8 +11,10 @@ namespace Draw.Scripts.Bootstrap
     public class EntryPoint : MonoBehaviour
     {
         [SerializeField] private Brush _brush;
+        [SerializeField] private GameObject brush;
         [SerializeField] private Renderer _drawableRenderer;
         [SerializeField] private UIConfig _uiConfig;
+        [SerializeField] private LayerMask _drawableLayerMask;
         
         private Button _redButton;
         private Button _greenButton;
@@ -68,7 +70,8 @@ namespace Draw.Scripts.Bootstrap
 
         private void CreateBrush(InputManager inputManager)
         {
-            _brush.Initialize(inputManager, _uiManager, _drawableRenderer);
+            _brush = new Brush(inputManager, _uiManager, _drawableRenderer, _drawableLayerMask, brush.transform);
+            
         }
 
         private void CreateUIManager(Button redButton, Button greenButton, Button blueButton, Slider brushSizeSlider, Button clearButton, Button saveButton, Button loadbButton)

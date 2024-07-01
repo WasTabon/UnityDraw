@@ -23,11 +23,29 @@ namespace Draw.Scripts.System.Utils
             _uiManager = uiManager;
             
             _uiManager.OnClear += ClearTexture;
-            _uiManager.OnSave += async () => await SaveTextureAsync();
-            _uiManager.OnLoad += async () => await LoadTextureAsync();
+            _uiManager.OnSave += OnSaveHandler;
+            _uiManager.OnLoad += OnLoadHandler;
             
             _texture2D = new Texture2D(TextureWidth, TextureHeight);
             _drawableRenderer.material.mainTexture = _texture2D;
+        }
+
+        public void CleanUp()
+        {
+            _uiManager.OnClear -= ClearTexture;
+            
+            _uiManager.OnSave -= OnSaveHandler;
+            _uiManager.OnLoad -= OnLoadHandler;
+        }
+        
+        private async void OnSaveHandler()
+        {
+            await SaveTextureAsync();
+        }
+
+        private async void OnLoadHandler()
+        {
+            await LoadTextureAsync();
         }
         
         private void ClearTexture()
