@@ -37,22 +37,27 @@ namespace Draw.Scripts.Gameplay.Brush
         {
             Ray ray = new Ray(targetPos, Vector3.forward);
             RaycastHit hit;
-            
+    
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _drawableLayerMask))
             {
                 Vector2 uv = hit.textureCoord;
-                
+        
                 int x = (int)(uv.x * _texture.width);
                 int y = (int)(uv.y * _texture.height);
-
+                
+                int halfBrushSize = _brushSize / 2;
+                
+                Color[] brushPixels = new Color[_brushSize * _brushSize];
+        
                 for (int i = 0; i < _brushSize; i++)
                 {
                     for (int j = 0; j < _brushSize; j++)
                     {
-                        _texture.SetPixel(x + i - _brushSize / 2, y + j - _brushSize / 2, _currentColor);
+                        brushPixels[i * _brushSize + j] = _currentColor;
                     }
                 }
-
+                
+                _texture.SetPixels(x - halfBrushSize, y - halfBrushSize, _brushSize, _brushSize, brushPixels);
                 _texture.Apply();
             }
         }
